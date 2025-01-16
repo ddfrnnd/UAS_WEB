@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Font Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet" />
+
+    <title>Mountn.</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+          <div class="container">
+            <div class="box-navbar">
+              <div class="logo">
+                <h1>Mountn.</h1>
+              </div>
+              <ul class="menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#content">Content</a></li>
+                <li><a href="#about">Daftar</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <section class="hero" id="hero">
+          <div class="container">
+            <div class="box-hero">
+              <div class="box">
+                <h1>
+                  Gunung Pilihan Terbaik <br />
+                  Untuk Mendaki
+                </h1>
+                <p>Berikut adalah daftar gunung terbaik yang ada di Indonesia</p>
+                <button>Selengkapnya</button>
+              </div>
+              <div class="box">
+                <img src="/static/img/gunung1.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+      </section>
+      <!-- content -->
+      <div class="content" id="content">
+        <div class="container">
+          <div class="box-content">
+            <div class="box">
+              <img src="/static/img/gunung-sumbing.webp" alt="" />
+              <h3>Gunung Sumbing</h3>
+              <p>Jawa Tengah, Indonesia.</p>
+              <button>Detail</button>
+            </div>
+            <div class="box">
+              <img src="/static/img/gunung2.jpg" alt="" />
+              <h3>Gunung Prau</h3>
+              <p>Semarang , Jawa Tengah.</p>
+              <button>Detail</button>
+            </div>
+            <div class="box">
+              <img src="/static/img/gunung-slamet_17102024010448.jpg" alt="" />
+              <h3>Gunung Slamet</h3>
+              <p>Jawa Tengah, Indonesia.</p>
+              <button>Detail</button>
+            </div>
+            <div class="box">
+              <img src="/static/img/gunung-sindoro.jpg" alt="" />
+              <h3>Gunung Sindoro</h3>
+              <p>Jawa Tengah, Indonesia.</p>
+              <button>Detail</button>
+            </div>
+            <div class="box">
+              <img src="/static/img/gunung-merapi.jpg" alt="" />
+              <h3>Gunung Merapi</h3>
+              <p>Jawa Tengah, Indonesia.</p>
+              <button>Detail</button>
+            </div>
+            <div class="box">
+              <img src="/static/img/gettyimages-1203884451-612x612-transformed.jpeg" alt="" />
+              <h3>Gunung Bromo</h3>
+              <p>Jawa Timur, Indonesia.</p>
+              <button>Detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content -->
+      
+
+      <!-- about -->
+      <div class="about" id="about">
+        <div class="paket">
+          <h1 class="title">Paket Wisata Gunung</h1>
+          <br>
+          <a href="{{ url_for('add') }}" class="btn btn-primary">Tambah Paket</a>
+          <br>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nama Paket</th>
+                      <th>Gunung</th>
+                      <th>Harga</th>
+                      <th>Fasilitas</th>
+                      <th>Aksi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for paket in paket_wisata %}
+                <tr>
+                    <td>{{ paket.id }}</td>
+                    <td>{{ paket.nama_paket }}</td>
+                    <td>{{ paket.gunung }}</td>
+                    <td>{{ paket.harga }}</td>
+                    <td>{{ paket.fasilitas }}</td>
+                    <td>
+                      <a href="/edit/{{paket['id']}}" class="btn edit">Edit</a>
+                      <form action="/delete/{{ paket['id'] }}" method="post" style="display: inline;">
+                          <button type="submit" class="btn delete">Delete</button>
+                      </form>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+      </div>
+        <div class="container">
+          <div class="box-daftar">
+            <h1>
+              Ingin Mendaki? <br />
+              Segera Daftarkan Bersama teman kalian!
+            </h1>
+            
+            <h3>Klik Link di Bawah Ini!</h3>
+            <button onclick="window.location.href='https://web.whatsapp.com/' "><i class="fa-brands fa-whatsapp"></i>Whatsapp</button>
+            <button><i class="fa-regular fa-envelope"></i> Gmail</button>
+            <button><i class="fa-regular fa-clipboard"></i> Google Form</button>
+          </div>
+        </div>
+      </div>
+      <!-- about -->
+  
+      <!-- Footer -->
+      <div class="footer">
+        <div class="container">
+          <div class="box-footer">
+            <div class="box">
+              <h2>Mountn.</h2>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam eius rerum quisquam perspiciatis obcaecati, quasi temporibus aperiam iusto aliquam doloremque.</p>
+            </div>
+            <div class="box">
+              <h3>Menu</h3>
+              <a href="#hero">Home</a>
+              <a href="#content">Content</a>
+              <a href="#about">Daftar</a>
+            </div>
+            <div class="box">
+              <p>&copy; Copyright by <span>Dede Fernanda</span> All Rights Reserved 2022, Indonesia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+  
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      <script src="https://unpkg.com/scrollreveal"></script>
+</body>
+</html>
