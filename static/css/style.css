@@ -318,6 +318,34 @@
     -webkit-animation: animasi 2s infinite;
 }
   
+
+.flash-message {
+  position: fixed;
+  top: 50%; /* Tengah secara vertikal */
+  left: 50%; /* Tengah secara horizontal */
+  transform: translate(-50%, -50%); /* Pastikan posisinya benar-benar di tengah */
+  padding: 15px 30px;
+  border-radius: 8px;
+  background-color: #28a745; /* Warna default untuk pesan sukses */
+  color: white;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Warna untuk kategori error */
+.flash-message.error {
+  background-color: #dc3545; /* Warna merah untuk error */
+}
+
+/* Warna untuk kategori sukses */
+.flash-message.success {
+  background-color: #28a745; /* Warna hijau untuk sukses */
+}
+
+
 @keyframes animasi {
     0% {
       transform: scale(1);

@@ -22,6 +22,13 @@
     <title>Mountn.</title>
 </head>
 <body>
+    <!-- Flash Message -->
+    <div id="flashMessage" class="flash-message" 
+    data-message="{{ session.pop('message', '') }}" 
+    data-type="{{ session.pop('category', 'success') }}" 
+    style="display: none;">
+    </div>
+
     <header>
         <nav class="navbar" id="navbar">
           <div class="container">
@@ -175,8 +182,32 @@
         </div>
       </div>
       <!-- Footer -->
-  
-      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      <script>
+        // Flash Message Function
+        function showFlashMessage(message, type = 'success') {
+            const flashMessage = document.getElementById('flashMessage');
+            flashMessage.textContent = message;
+            flashMessage.className = `flash-message ${type}`;
+            flashMessage.style.display = 'block';
+
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                flashMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // Retrieve flash message data
+        const flashMessageElement = document.getElementById('flashMessage');
+        const flashMessage = flashMessageElement.getAttribute('data-message');
+        const flashType = flashMessageElement.getAttribute('data-type');
+
+        // If message exists, display it
+        if (flashMessage) {
+            showFlashMessage(flashMessage, flashType);
+        }
+      </script>
       <script src="https://unpkg.com/scrollreveal"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>  
+
 </body>
 </html>
